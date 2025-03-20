@@ -1,6 +1,6 @@
 # Auto-Generated Examples for 'QuantumRingsLib'
 
-Found 8 file(s) in: `C:\Users\Robert\OneDrive\Documents\Work\QRS\Algorithms\LLM\examples`
+Found 8 file(s) in: `C:\Users\Robert\OneDrive\Documents\Work\QRS\QuantumRings\LLM\assistant/code`
 
 
 > 📌 **Note:**
