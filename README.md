@@ -12,10 +12,9 @@ There are 11 documents:
 * Qiskit-Topics.md
 
 ### SDK Functionality
-* API-Python.md
-* API-QuantumCircuitModule.md
-* API-QuantumRingsLib.md
-* AMI-quantumrings-toolkit-qiskit.md
+* Summary-Python.md
+* Summary-QuantumCircuit.md
+* Summary-Integration.md
 
 ### Code Examples
 * Convert-Qiskit-to-Quantum-Rings.md
