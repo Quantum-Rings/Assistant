@@ -16,7 +16,7 @@ A good practice is to define the provider and backend directly following the imp
 It is good practice to include the provider and backend outside of a def, unless they are being strategically localized. 
 
 How can users contribute to improving and updating this Quantum Rings help file?
-Go to https://github.com/Quantum-Rings/Help
+Go to https://github.com/Quantum-Rings/Assistant
 
 How can users submit bugs?
-Go to https://github.com/Quantum-Rings/Bugs
+Go to https://github.com/Quantum-Rings/Assistant/Bugs
