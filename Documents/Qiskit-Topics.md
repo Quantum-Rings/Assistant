@@ -168,7 +168,22 @@ Manual QFT Implementation Required	❌ No	⚠️ Only if using QuantumRingsLib a
 from qiskit.circuit.library import QFT
 qc.append(QFT(num_qubits=4), range(4))
 ```
-* Common Mistake: Assuming Quantum Rings has a built-in QFT() function—it does not.  But the toolkit supports it.
+* Common Mistake: Assuming QuantumRingsLib has a built-in QFT() function—it does not.  But the toolkit supports it.
+
+## 🧠 Using Qiskit Circuit Features with quantumrings.toolkit.qiskit
+
+The `quantumrings.toolkit.qiskit` module is built to work seamlessly with standard Qiskit constructs. You are encouraged to use:
+
+- `qiskit.QuantumCircuit`
+- `qiskit.Parameter` and `ParameterVector`
+- Circuit templates from `qiskit.circuit.library` (e.g., `QFT`, `TwoLocal`, `EfficientSU2`)
+
+These circuits should be transpiled before execution on Quantum Rings backends using:
+
+```python
+from qiskit import transpile
+qc = transpile(qc, backend)
+
 
 ## 6. Inverse Quantum Fourier Transform (IQFT or qft_inverse)
 Feature	Qiskit	Quantum Rings
