@@ -1,141 +1,107 @@
-Skip to Content
-Quantum Rings
-Plans
-SDK Docs
-Request Demo
-News
-Jobs
-Login
+# Quantum Rings Plans & Pricing
 
-Flexible Plans to Maximize Your Quantum Potential
-Whether you’re a student, researcher, or enterprise, Quantum Rings offers affordable plans to accelerate your quantum journey. Start for free or scale up with advanced features tailored to your needs.
-Choose the Plan That’s Right for You
+Quantum Rings offers flexible, affordable plans to kickstart or scale your quantum computing journey. Whether you’re a student, researcher, or an enterprise, there’s a plan to meet your needs.
 
-Academic Plan
-Price: Free
+---
 
-Features:
+## Plan Overview
 
-Simulate up to 128 qubits
+### Academic Plan 
+**Price:** Free  
+**Features:**
+- Simulate up to **128 qubits**
+- Full access to core simulation tools
+- Designed for academic use
+- Community Support
+- **Non-commercial** use only
 
-Full access to core simulation tools
+### Starter Plan
+**Price:** Free  
+**Features:**
+- Simulate up to **64 qubits**
+- Full access to core simulation tools
+- Ideal for learning and evaluation
+- Community Support
+- **Non-commercial** use only
 
-Designed for academic use
+### Personal & Startup
+**Price:** \$35/month  
+**Features:**
+- Simulate up to **128 qubits**
+- Full access to core simulation tools
+- Designed for early commercial use
+- Email Support
+- Limited to individuals or small businesses (<25 employees, <\$1M in annual revenue)
 
-Community Support
+### Enterprise
+**Price:** Custom  
+**Features:**
+- Unlock **as many qubits as you need**
+- Full access to core simulation tools
+- Designed for commercial use of any size
+- Professional Support
+- Commercial Use
 
-Non-Commercial Use Only
+---
 
-Start for Free
+## Key Highlights
 
-Starter Plan
-Price: Free
+- **Start for Free:** Both Academic and Starter Plans are free to begin exploring quantum simulation.
+- **Scale Up Anytime:** Upgrade or adjust your plan as your requirements grow.
+- **Request a Demo:** Get a personalized overview of how Quantum Rings can power your quantum projects.
 
-Features:
+---
 
-Simulate up to 64 qubits
+## Frequently Asked Questions
 
-Full access to core simulation tools
+**Q: What’s included in the free academic plan?**  
+A: The academic plan supports up to 128 qubits with non-commercial usage, ideal for students and researchers. Community support is provided.
 
-Designed for Learning, Evaluating
+**Q: How many qubits can I simulate?**  
+A: This depends on:
+1. Your plan (64 or 128 qubits; Enterprise can unlock more).  
+2. Your system memory.  
+3. The complexity of your circuits.
 
-Community Support
+**Q: What if I’m a student and want more qubits?**  
+A: You can request more qubits on the **Manage Keys** page after signing up. The Quantum Rings team often grants additional qubits for valid academic or research needs.
 
-Non-Commercial Use Only
+**Q: Can I share my account with my team?**  
+A: No. Each user must have their own plan, even if it’s a free tier.
 
-Start for Free
+**Q: Can I switch plans later?**  
+A: Yes. You can upgrade or adjust plans at any time.
 
-Personal & Startup 
-Price: $35/mo
+**Q: What support options are available?**  
+A: Free plans have Community Support. Paid plans include Email Support. Enterprise plans include Professional Support.
 
-Features:
+**Q: Do you offer custom solutions for specific needs?**  
+A: Absolutely. The Enterprise plan can be tailored for your organization’s requirements, including consulting and training.
 
-Simulate up to 128 qubits
+**Q: How is billing handled for the Personal & Startup plan?**  
+A: You can pay monthly or annually via credit card. Enterprise customers are generally invoiced directly.
 
-Full access to core simulation tools
+**Q: Is there a trial period for paid plans?**  
+A: *(Not specified in the text.)*
 
-Designed for Early Commercial Use
+**Q: Is Quantum Rings compatible with my system?**  
+A: Yes. It supports Windows, macOS, and Linux.
 
-Email Support
+**Q: How do I request a demo?**  
+A: Click the **“Request a Demo”** button on the site and complete the form. The Quantum Rings team will schedule a personalized demonstration.
 
-Limited to Individuals or Small Businesses with less than 25 employees, and less than $1M in annual revenue
+---
 
-Contact Us
+## Stay Updated
 
-Enterprise 
-Price: Custom Pricing
+Sign up for our mailing list to get SDK updates, webinars, and industry news straight to your inbox.
 
-Features:
+---
 
-Unlock the number of qubits you need.
+## Contact
 
-Full access to core simulation tools
+- **Email:** info@quantumrings.com  
+- **Address:** 2000 Central Ave, Suite 100, Boulder CO, 80301
 
-Designed for Commercial Use with companies of any size
-
-Professional Support
-
-Commercial Use
-
-Contact Us
-Start Your Quantum Journey Today
-Whether you're just getting started or ready to scale, Quantum Rings has a plan for  you. 
-Start for Free
-Request a Demo
-FAQs
-What’s included in the free academic plan?
-The academic plan includes full simulation capabilities for up to 128 qubits, ideal for non-commercial research, and more than you should need to start learning.
-
-How many qubits can I simulate?
-Three factors will influence how many qubits you can simulate.
-
-The Plan — The plan you sign up for will set the maximum allowed qubits.  These can be 64, 128, or with Enterprise you can unlock however many qubits you’d like.
-
-Your Memory — The memory available in your system will influence how many qubits you can simulate on your machine
-
-The Circuit Makeup — Not all operations are equal.  While we optimize how your circuits are stored and processed on your system, different operations have different levels of complexity.
-
-If you are wondering about specific circuits,  the Quantum Rings team can make good faith estimates as to the compute resources required to simulate your circuit, but the best way to know is to try it out.
-
-What if I’m a student and I want more qubits?
-Generally speaking, Quantum Rings can make more qubits available to you for experimenting and testing.  Once signed up, on the Manage Keys page, you can request more qubits to be unlocked. After a review, you will be surprised that the Quantum Rings team is inclined to grant access to additional qubits if it’s for a good reason.
-
-Can I share my account with my team?
-No, Pricing for each plan is on a “named user” basis.  Each user must have their own plan— even for free tier plans.
-
-Can I switch plans later?
-Yes, you can upgrade or adjust your plan at any time to fit your evolving needs.
-
-What support options are available?
-Free Plans come with Community Support, while paid plans have a base support option of email support, and enterprise plans come with professional support 
-
-Do you offer custom solutions for specific needs?
-Absolutely. Our enterprise plan includes customized solutions tailored to your organization’s requirements, from advanced integrations to consulting and training.
-
-How is billing handled for the professional plan?
-The “personal and startup” plan can be billed monthly or annually using a credit card.  The Enterprise Plans are generally handled through invoicing directly with your finance organization.
-
-Is there a trial period for paid plans?
-
-Is the software compatible with my system?
-Quantum Rings is compatible with Windows, macOS, and Linux, ensuring it integrates seamlessly with your existing setup.
-
-How can I request a demo?
-Simply click the “Request a Demo” button on this page and fill out the form. Our team will schedule a personalized demo to showcase how Quantum Rings can meet your needs.
-
-STAY UPDATED
-Get the latest from Quantum Rings. SDK updates, webinars, quantum Industry news, and more are straight in your inbox. Stay informed and stay ahead!
-
-Email Address
- Sign Up
-CONTACT
-info@quantumrings.com
-
-2000 Central Ave 
-Suite 100
-Boulder CO, 80301
-
-
-© Copyright 2024 Quantum Rings, Inc.
-
- All registered trademarks herein are the property of their respective owners. 
+© 2024 Quantum Rings, Inc.  
+All registered trademarks are the property of their respective owners.
