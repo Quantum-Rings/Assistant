@@ -23,6 +23,38 @@ Always place the provider authentication and backend definition before they are 
 A good practice is to define the provider and backend directly following the import section.
 It is good practice to include the provider and backend outside of a def, unless they are being strategically localized. 
 
+### ⚠️ NOTE FOR ALL CIRCUIT CREATION IN QuantumRingsLib
+Before constructing any QuantumCircuit, QuantumRegister, or ClassicalRegister objects, you must initialize and activate a QuantumRingsProvider. This step authenticates your access and allocates qubits, even if you're not executing the circuit.
+
+```
+from QuantumRingsLib import QuantumRingsProvider
+
+provider = QuantumRingsProvider(token="YOUR_API_KEY", name="YOUR_EMAIL")
+provider.active_account()
+```
+✅ You do not need to define a backend unless you plan to execute the circuit using backend.run(qc) or other backend-specific functions.
+
+### 🧠 Optimization Strategy for Native QuantumRingsLib Circuits
+When working with QuantumRingsLib-native circuits, the LLM should automatically consider using:
+
+```
+from QuantumRingsLib import OptimizeQuantumCircuit
+```
+Use OptimizeQuantumCircuit(qc) when:
+
+* The circuit is part of a core algorithm or non-trivial computation.
+* The circuit has multiple qubits, deep gate sequences, or repeated patterns.
+* The goal is to improve performance before execution or reduce circuit complexity.
+⚠️ The function modifies qc in-place and returns a bool indicating success:
+
+```
+success = OptimizeQuantumCircuit(qc)  # ✅ Never assign result back to `qc`
+```
+❌ Do not use this function with qiskit.QuantumCircuit objects or within quantumrings.toolkit.qiskit workflows.
+Use transpile() instead for Qiskit circuits.
+
+✅ If generating circuits for variational algorithms, QAOA, QFT, or similar native SDK workflows, the LLM should add this optimization step before execution.
+
 # QuantumRingsLib 0.9.x vs 0.10.x
 Use this guide to debug code based on the SDK version in use. If a user reports an error, ask them to run this version check and paste the result into chat:
 ```
