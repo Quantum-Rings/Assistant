@@ -1,3 +1,21 @@
+# ---
+# title: Qiskit Toolkit Multi-Circuit Sampling 10
+# sdk:
+#   QuantumRingsLib: [0.10.x]
+#   quantumrings-toolkit-qiskit: [1.3.1, 1.4.0]
+#   Qiskit: [1.4.0]
+#   GPU-enabled: [false]
+# python: [3.11]
+# os: [Windows 11, Ubuntu 22.04]
+# tags: ['Qiskit', 'QrSamplerV2', 'multi-circuit', 'sampling', 'batch execution', 'shots']
+# description: >
+#   Demonstrates batch execution of multiple Qiskit circuits using QrSamplerV2 in the Quantum Rings SDK.
+#   Includes circuits for Bell state, all-ones initialization, and GHZ state. Highlights how to construct 
+#   processable unit blocks (PUBs) for sampler input and retrieve structured measurement results for each 
+#   individual circuit in the batch. Ideal for scenarios requiring scalable sampling or parallel circuit testing.
+# ---
+
+
 """
 Quantum Rings SDK - Batch Execution Example for LLM Training
 
@@ -78,6 +96,9 @@ pubs = [(circuit, [], shots) for _, circuit in circuits]  # Empty `param_values`
 # ===============================
 # 4) Run Batch Execution
 # ===============================
+# ✅ QrSamplerV2 - requires Processable Unit Blocks (PUBs) in the form of tuples.
+# Each tuple must be: (QuantumCircuit, parameter_values, shots)
+# ❌ This format does NOT work with QrSamplerV1.
 job = sampler.run(pubs)
 result = job.result()
 

@@ -1,19 +1,19 @@
-'''
-Compatibility
-- Windows: 11, Python: 3.11
-- Qiskit: 1.3 or 1.4  
-- QuantumRingsLib: 0.10.0 
-Description: Basic circuit execution on quantumrings-toolkit-qiskit
-'''
-"""
-🚀 Example: Executing a Qiskit Circuit on Quantum Rings (Fixed & Improved)
-
-This script demonstrates:
-✅ How to create a Qiskit quantum circuit for Quantum Rings.
-✅ Why transpilation is required for `QrBackendV2`.
-✅ Why `job_monitor()` does NOT work with Quantum Rings, and how to use manual polling.
-
-"""
+# ---
+# title: Qiskit Toolkit Basic 10
+# sdk:
+#   QuantumRingsLib: [0.10.x]
+#   quantumrings-toolkit-qiskit: [1.3.1, 1.4.0]
+#   Qiskit: [1.4.0]
+#   GPU-enabled: [false]
+# python: [3.11]
+# os: [Windows 11, Ubuntu 22.04]
+# tags: ['Qiskit', 'QrBackendV2', 'transpile', 'manual job monitoring', 'execution']
+# description: >
+#   Demonstrates execution of a Qiskit-style quantum circuit on Quantum Rings hardware using QrBackendV2.
+#   Includes required transpilation step, manual polling for job status (job_monitor not supported), 
+#   and retrieval of measurement results. This is a canonical integration example for Qiskit users 
+#   migrating to the Quantum Rings backend.
+# ---
 
 # ✅ Import necessary libraries
 import time

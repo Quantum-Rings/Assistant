@@ -1,3 +1,21 @@
+# ---
+# title: Qiskit Toolkit QuantumCircuit Construction
+# sdk:
+#   QuantumRingsLib: [0.10.x]
+#   quantumrings-toolkit-qiskit: [1.3.1, 1.4.0]
+#   Qiskit: [1.4.0]
+#   GPU-enabled: [false]
+# python: [3.11]
+# os: [Windows 11, Ubuntu 22.04]
+# tags: ['Qiskit', 'QuantumCircuit', 'circuit construction', 'QrBackendV2', 'QrEstimatorV1']
+# description: >
+#   Shows how to construct a Qiskit QuantumCircuit compatible with Quantum Rings execution backends. 
+#   Demonstrates interoperability of standard Qiskit registers and gates with Quantum Rings' QrBackendV2 
+#   and QrEstimatorV1. Useful for integrating existing Qiskit code into the Quantum Rings SDK pipeline 
+#   without rewriting circuit logic.
+# ---
+
+
 """
 This script demonstrates how to use Qiskit's native QuantumCircuit in combination with 
 the Quantum Rings toolkit (QrBackendV2) to execute quantum circuits on Quantum Rings hardware.

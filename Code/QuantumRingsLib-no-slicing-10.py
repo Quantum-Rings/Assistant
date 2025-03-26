@@ -1,3 +1,19 @@
+# ---
+# title: Quantumringslib No Slicing 10
+# sdk:
+#   QuantumRingsLib: [0.10.x]
+#   quantumrings-toolkit-qiskit: []
+#   GPU-enabled: [false]
+# python: [3.11]
+# os: [Windows 11, Ubuntu 22.04]
+# tags: ['compatibility', 'classical register', 'indexing', 'QuantumRingsLib']
+# description: >
+#   Compares classical register indexing behavior between Qiskit and QuantumRingsLib. 
+#   Demonstrates that Quantum Rings does not support slicing of classical registers (e.g., c[:2]), 
+#   and enforces explicit indexing (e.g., c[0], c[1]). 
+#   Includes working and failing examples to clarify compatibility differences in classical measurement.
+# ---
+
 # Qiskit Test: ClassicalRegister Slicing vs Individual Indexing
 try:
     from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister

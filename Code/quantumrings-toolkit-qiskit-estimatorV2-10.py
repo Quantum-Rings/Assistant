@@ -1,3 +1,20 @@
+# ---
+# title: Qiskit Toolkit Estimator V2 10
+# sdk:
+#   QuantumRingsLib: [0.10.x]
+#   quantumrings-toolkit-qiskit: [1.3.1, 1.4.0]
+#   Qiskit: [1.4.0]
+#   GPU-enabled: [false]
+# python: [3.11]
+# os: [Windows 11, Ubuntu 22.04]
+# tags: ['Qiskit', 'QrEstimatorV2', 'SparsePauliOp', 'expectation value', 'estimator', 'multi-observable']
+# description: >
+#   Demonstrates use of QrEstimatorV2 to compute expectation values over multiple observables 
+#   for a given Qiskit circuit using Quantum Rings backends. Shows construction of a Bell state circuit, 
+#   definition of observables like ZZ and XX, and interpretation of the resulting expectation values. 
+#   Also explains how QrEstimatorV2 accepts structured input as a list of PUB tuples and does not require transpilation.
+# ---
+
 '''
 QrEstimatorV2 module
 classQrEstimatorV2

@@ -1,8 +1,20 @@
-"""
-QuantumRingsLib-control-10.py
-QuantumRingsLib >= 0.10.x, does not work in earlier versions
-Demonstrates: using _if control statement
-"""
+# ---
+# title: Quantumringslib Control 10
+# sdk:
+#   QuantumRingsLib: [0.10.x]
+#   quantumrings-toolkit-qiskit: []
+#   GPU-enabled: [false]
+# python: [3.11]
+# os: [Windows 11, Ubuntu 22.04]
+# tags: ['c_if', 'conditional', 'control-flow', 'job_monitor']
+# description: >
+#   Demonstrates use of conditional quantum logic in QuantumRingsLib version 0.10.x, 
+#   specifically the `.c_if()` method for classical control over quantum gates.
+#   Initializes qubits, measures into classical bits, then applies conditional operations 
+#   based on classical register values. Executes the circuit using backend.run() 
+#   and retrieves results after monitoring job completion.
+# ---
+
 import QuantumRingsLib
 from QuantumRingsLib import QuantumRegister, ClassicalRegister, QuantumCircuit
 from QuantumRingsLib import QuantumRingsProvider

@@ -1,14 +1,18 @@
-'''
-save_provier.py
-QuantumRingsLib > 0.8.0
-Saves provider credentials so that the provider can be called using:
-provider = QuantumRingsProvider()
+# ---
+# title: Quantumringslib Provider Setup
+# sdk:
+#   QuantumRingsLib: [0.9.x, 0.10.x]
+#   quantumrings-toolkit-qiskit: []
+#   GPU-enabled: [false]
+# python: [3.11]
+# os: [Windows 11, Ubuntu 22.04]
+# tags: ['provider', 'authentication', 'QuantumRingsProvider', 'setup']
+# description: >
+#   Demonstrates how to initialize and activate a QuantumRingsProvider using saved credentials 
+#   or manual API token entry. Essential setup step for accessing Quantum Rings backends and 
+#   executing circuits. Suitable for both persistent and interactive session management.
+# ---
 
-Usage:
-- Replace <your key> with your actual API key.
-- Replace <your email> with the email associated with your Quantum Rings account.
-- Run this script once to store credentials securely.
-'''
 import QuantumRingsLib
 from QuantumRingsLib import QuantumRingsProvider
 

@@ -1,10 +1,20 @@
-'''
-Compatibility
-- Windows: 11, Python: 3.11
-- Qiskit: 1.3 or 1.4  
-- QuantumRingsLib: 0.10.0 
-Description: How to use QrSamplerCNN
-'''
+# ---
+# title: Qiskit Toolkit Sampler QNN 10
+# sdk:
+#   QuantumRingsLib: [0.10.x]
+#   quantumrings-toolkit-qiskit: [1.3.1, 1.4.0]
+#   Qiskit: [1.4.0]
+#   GPU-enabled: [false]
+# python: [3.11]
+# os: [Windows 11, Ubuntu 22.04]
+# tags: ['Qiskit', 'SamplerQNN', 'machine learning', 'neural network', 'QrSamplerQNN']
+# description: >
+#   Demonstrates how to create and evaluate a SamplerQNN using the Quantum Rings QrSamplerQNN interface 
+#   for Qiskit machine learning integration. Builds a Qiskit TwoLocal circuit as the model, sets up 
+#   input-to-output mappings using input_gradients=False, and executes sampling across different input encodings.
+#   Suitable for hybrid classical-quantum ML workflows.
+# ---
+
 
 '''
 QrSamplerQNN module

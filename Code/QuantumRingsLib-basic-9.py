@@ -1,8 +1,17 @@
-"""
-QuantumRingsLib-basic.py
-QuantumRingsLib <= 0.9.11
-Demonstrates: basic circuit execution
-"""
+# ---
+# title: Basic Quantum Circuit Execution (QuantumRingsLib 0.9.x)
+# sdk:
+#   QuantumRingsLib: [0.9.11]
+#   quantumrings-toolkit-qiskit: []
+#   GPU-enabled: [false]
+# python: [3.11]
+# os: [Windows 11, Ubuntu 22.04]
+# tags: [basic, execution, QuantumRingsLib, backend.run, job_monitor]
+# description: >
+#   Demonstrates how to execute a simple quantum circuit using QuantumRingsLib <= 0.9.11.
+#   Shows how to construct a circuit, execute it on the backend, and monitor job status.
+#   Includes use of QuantumRegister, ClassicalRegister, and QuantumRingsProvider.
+# ---
 
 import QuantumRingsLib
 from QuantumRingsLib import QuantumRegister, ClassicalRegister, QuantumCircuit

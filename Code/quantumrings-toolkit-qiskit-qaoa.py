@@ -1,3 +1,20 @@
+# ---
+# title: Qiskit Toolkit QAOA Example
+# sdk:
+#   QuantumRingsLib: [0.10.x]
+#   quantumrings-toolkit-qiskit: [1.3.1, 1.4.0]
+#   Qiskit: [1.4.0]
+#   GPU-enabled: [false]
+# python: [3.11]
+# os: [Windows 11, Ubuntu 22.04]
+# tags: ['Qiskit', 'QAOA', 'variational circuit', 'sampler', 'optimization', 'quantum algorithm']
+# description: >
+#   Demonstrates how to build and execute a QAOA variational circuit using Qiskit with Quantum Rings integration.
+#   Uses the QAOAAnsatz circuit from qiskit.circuit.library, constructs cost Hamiltonians using SparsePauliOp, 
+#   and executes the circuit using QrSamplerV2. This example supports variational optimization workflows 
+#   and highlights how to evaluate expectation values over a parameterized ansatz.
+# ---
+
 """
 Quantum Rings SDK: QAOA Circuit Example
 

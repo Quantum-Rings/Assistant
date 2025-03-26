@@ -179,11 +179,10 @@ The `quantumrings.toolkit.qiskit` module is built to work seamlessly with standa
 - Circuit templates from `qiskit.circuit.library` (e.g., `QFT`, `TwoLocal`, `EfficientSU2`)
 
 These circuits should be transpiled before execution on Quantum Rings backends using:
-
-```python
+```
 from qiskit import transpile
 qc = transpile(qc, backend)
-
+```
 
 ## 6. Inverse Quantum Fourier Transform (IQFT or qft_inverse)
 Feature	Qiskit	Quantum Rings
@@ -231,111 +230,81 @@ sampler = QrSamplerV2(backend=backend)  # ✅ Correct
 ```
 
 ## 8. Parameter Handling in Quantum Rings SDK
-### 📌 Quantum Rings vs. Qiskit: Key Differences in Parameter Assignment
-Quantum Rings and Qiskit both support parameterized circuits, but they differ in how parameters must be assigned before execution:
 
-* Qiskit allows .bind_parameters() to dynamically assign parameter values, even after transpilation.
-* Quantum Rings does not support .bind_parameters(). Instead, parameter values must be passed explicitly at execution in a nested list [[]] format.
-* Transpilation removes symbolic parameters in Quantum Rings, so assigning parameters after transpilation will fail.
-### ❌ Common Errors and Fixes
-🚨 Incorrect Usage (Will Cause an Error in Quantum Rings)
-```
-# Qiskit-style parameter binding (Will fail in Quantum Rings)
-transpiled_qc.assign_parameters({gamma: np.pi})  # ❌ Not supported in Quantum Rings
-job = estimator.run([transpiled_qc], [hamiltonian])  # ❌ Missing parameter values
-```
-Expected Error:
-```
-Exception: The given number of parameters is less than the parameters in the circuit.
-```
-### ✅ Correct Usage in Quantum Rings
-To correctly execute parameterized circuits in Quantum Rings, follow these steps:
+### 📌 Quantum Rings SDK vs. Qiskit: Parameter Assignment
 
-1️⃣ Define Parameter Values Before Execution
-```
-# Example values for β and γ
-beta_values = [np.pi / 4, np.pi / 2]  
-gamma_values = [np.pi / 3, np.pi / 6]  
+Quantum Rings and Qiskit both support parameterized circuits, but their workflows differ significantly—especially between native QuantumRingsLib usage and Qiskit-based integration via `quantumrings.toolkit.qiskit`.
 
-# Pass parameters as a nested list `[[]]` (Required Format)
-parameter_values = [beta_values + gamma_values]  # ✅ Correct format
+---
+
+### ✅ Native SDK: Using QuantumRingsLib.QuantumCircuit
+
+The native SDK supports `.assign_parameters()` if you follow these rules:
+
+- You must use `inplace=True` when calling `.assign_parameters()`.
+- Parameter dictionary keys must be strings matching the parameter names, not Parameter objects.
+- All arguments to parameterized gates like `u()` must be of the same type. You cannot mix a `Parameter` with a `float`.
+- Omitting `inplace=True` will cause `.assign_parameters()` to return `None`, which may cause confusion.
+
+**Working Example (Native SDK):**
+
+```python
+from QuantumRingsLib import Parameter, QuantumCircuit, QuantumRegister
+
+theta = Parameter("theta")
+phi = Parameter("phi")
+lam = Parameter("lambda")
+
+q = QuantumRegister(1, "q")
+qc = QuantumCircuit(q)
+
+qc.u(theta, phi, lam, q[0])  # All parameters are symbolic
+
+qc.assign_parameters({
+    "theta": 3.14,
+    "phi": 1.57,
+    "lambda": 0.785
+}, inplace=True)
 ```
-### 2️⃣ Pass Parameters Directly to QrEstimatorV1.run()
+
+### Common Mistakes That Will Fail:
 ```
-# Transpile first, then execute
+qc.u(theta, 0, 0, q[0])  # ❌ Mixing Parameter and float types
+
+qc.assign_parameters({theta: 3.14}, inplace=True)  # ❌ Key must be a string
+
+qc.assign_parameters({"theta": 3.14})  # ❌ Missing inplace=True returns None
+```
+Refer to examples/tests/QuantumRingsLib-parameter-binding-test.py for a complete working and failing test.
+
+* ⚠️ Qiskit-Based Integration: Using quantumrings.toolkit.qiskit
+If you are using Qiskit circuits with the Quantum Rings Toolkit (e.g., QrEstimatorV1, QrBackendV2, or QrSamplerV1), parameter handling is different:
+
+Qiskit circuits should not use .assign_parameters() after transpilation.
+
+Instead, you must provide parameter values directly using the parameter_values argument in a nested list format: [[]].
+
+Transpiling a circuit will remove symbolic parameters, so assigning parameters after transpilation will usually fail silently.
+
+### Incorrect (Fails in Toolkit):
+```
 transpiled_qc = transpile(qc, backend)
+transpiled_qc.assign_parameters({gamma: np.pi})  # ❌ May not work
+```
 
-# Execute with correct parameter format
+Correct (Toolkit Execution with Parameters):
+```
+parameter_values = [[np.pi / 2, np.pi / 3]]
 job = estimator.run([transpiled_qc], [hamiltonian], parameter_values)
 result = job.result()
-print("QAOA Expectation Value:", result.values)  # ✅ Works correctly
+print("Expectation value:", result.values)
 ```
-⚠️ Best Practices for Quantum Rings Parameter Handling
-✅ Always pass parameters as [[]], not {}
 
-❌ Incorrect: {param: value} (Qiskit format)
-✅ Correct: [[param_value1, param_value2]]
-✅ Assign Parameters Before Transpilation
-
-❌ Incorrect: transpile(qc.bind_parameters(...), backend)
-✅ Correct:
-```
-transpiled_qc = transpile(qc, backend)
-job = estimator.run([transpiled_qc], [hamiltonian], parameter_values)
-```
-✅ Use QrEstimatorV1 for Expectation Values
-
-If you need expectation values, use QrEstimatorV1, not QrSamplerV1.
-✅ Assign Numeric Values Before Using Parameters in Circuits
-
-Instead of using symbolic parameters, directly assign numeric values before execution.
-Example (Correct Way to Apply Parameters in a Circuit):
-```
-gamma_value = np.pi  # ✅ Define a numeric value before using it
-qc.rz(gamma_value, q[0])  # ✅ Use the value directly instead of a symbolic parameter
-```
-🔍 Debugging Guide: Fixing Parameter Binding Errors
-If you encounter an error such as:
-```
-Exception: The given number of parameters is less than the parameters in the circuit.
-```
-* ✅ Solution:
-
-Ensure parameters are passed as a nested list [[]].
-Check that all parameters are explicitly assigned before execution.
-Verify that transpilation happens before execution, not before parameter assignment.
-
-### 📌 Special Case: Certain Gates Require Explicit Numeric Parameters
-Quantum Rings does not support ParameterExpression inside parametric gates like rzz(), rxx(), rx(), and rz().
-
-🚨 If you pass a ParameterExpression, you will get an error like this:
-
-```
-TypeError: rzz(): incompatible function arguments.
-Expected float, received ParameterExpression.
-```
-✅ Fix: Assign a numeric value to parameters before transpilation:
-```
-from qiskit import QuantumCircuit
-from qiskit.circuit import Parameter
-
-theta = Parameter("θ")
-qc = QuantumCircuit(2)
-
-# ❌ This will fail in Quantum Rings
-qc.rzz(2.0 * theta, 0, 1)
-
-# ✅ Fix: Assign a numeric value before transpilation
-qc_fixed = qc.assign_parameters({theta: 1.57})  # Assign float value
-transpiled_qc = transpile(qc_fixed, backend)  # ✅ Now it will work
-```
-⚠️ This applies to all rotation-based and controlled parametric gates, such as:
-
-* rzz(θ), rxx(θ), ryy(θ), rzx(θ)
-* rx(θ), ry(θ), rz(θ)
-* cu1(λ), cu3(θ, φ, λ), cp(λ)
-
-💡 Remember: Always assign numeric values before transpiling your circuit.
+### ✅ Best Practices Summary
+* For native QuantumRingsLib circuits, use .assign_parameters() with inplace=True and string-based keys.
+* For Qiskit circuits using the Quantum Rings toolkit, always pass parameter values via parameter_values=[[...]].
+* Never mix Parameter and float in multi-argument gates like u().
+* Always assign parameter values before transpilation if you plan to remove symbolic expressions.
 
 
 # 📌 Part III: Common Issues & Fixes

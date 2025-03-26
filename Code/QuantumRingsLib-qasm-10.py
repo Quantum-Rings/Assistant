@@ -1,8 +1,18 @@
-"""
-QuantumRingsLib-qasm-10.py
-QuantumRIngsLib >= 10, does not work in earlier versions
-Demonstarates how to read and write QASM2 files
-"""
+# ---
+# title: Quantumringslib Qasm 10
+# sdk:
+#   QuantumRingsLib: [0.10.x]
+#   quantumrings-toolkit-qiskit: []
+#   GPU-enabled: [false]
+# python: [3.11]
+# os: [Windows 11, Ubuntu 22.04]
+# tags: ['qasm', 'qasm2', 'load', 'QuantumRingsLib', 'circuit loading']
+# description: >
+#   Demonstrates how to load and parse QASM 2.0 content into a QuantumRingsLib QuantumCircuit 
+#   using the `qasm2.loads()` method. Highlights options for include paths, strict parsing, 
+#   and error handling. Useful for importing circuits from external tools or text representations.
+# ---
+
 import QuantumRingsLib
 from QuantumRingsLib import QuantumRingsProvider
 from QuantumRingsLib import QuantumCircuit

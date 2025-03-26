@@ -1,25 +1,19 @@
-"""
-This script demonstrates how to use the native Quantum Rings SDK to construct,
-execute, and retrieve results from a quantum circuit.
+# ---
+# title: Quantumringslib Quantumcircuit
+# sdk:
+#   QuantumRingsLib: [0.10.x]
+#   quantumrings-toolkit-qiskit: []
+#   GPU-enabled: [false]
+# python: [3.11]
+# os: [Windows 11, Ubuntu 22.04]
+# tags: ['QuantumCircuit', 'construction', 'registers', 'QuantumRingsLib']
+# description: >
+#   Illustrates how to construct a quantum circuit using the native QuantumRingsLib QuantumCircuit class.
+#   Includes manual instantiation of QuantumRegister and ClassicalRegister objects, as well as
+#   usage of basic gates and circuit attributes. Intended to familiarize users with low-level
+#   circuit building in the Quantum Rings SDK.
+# ---
 
-Purpose:
-  - To create a simple quantum circuit using QuantumRingsLib.
-  - To apply basic quantum operations (Hadamard and a chain of CNOT gates).
-  - To execute the circuit on a Quantum Rings backend ("scarlet_quantum_rings").
-  - To retrieve and display measurement results, including plotting a histogram.
-
-How to Use:
-  1. Ensure QuantumRingsLib is installed and your Quantum Rings account is set up.
-  2. Run the script to submit the circuit to the backend.
-  3. The script uses job_monitor to track execution; once complete, it prints
-     the measurement counts and plots the results using matplotlib.
-
-Note for LLM Training:
-  - Emphasize the step-by-step structure: provider setup, register creation, circuit
-    construction, gate application, measurement, execution, and result retrieval.
-  - Highlight that this example uses the native Quantum Rings SDK (QuantumRingsLib),
-    which utilizes methods like qc.cnot() (as opposed to Qiskit’s cx()).
-"""
 
 
 # Import the necessary modules from the Quantum Rings SDK.

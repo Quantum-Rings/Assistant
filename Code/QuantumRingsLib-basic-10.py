@@ -1,8 +1,17 @@
-"""
-QuantumRingsLib-basic-10.py
-QuantumRingsLib >= 0.10.x
-Demonstrates: basic circuit execution
-"""
+# ---
+# title: Quantumringslib Basic 10
+# sdk:
+#   QuantumRingsLib: [0.10.x]
+#   quantumrings-toolkit-qiskit: []
+#   GPU-enabled: [false]
+# python: [3.11]
+# os: [Windows 11, Ubuntu 22.04]
+# tags: ['basic', 'execution', 'job_monitor', 'backend.run']
+# description: >
+#   This example demonstrates a simple Qiskit circuit execution on Quantum Rings. 
+#   It includes transpilation and job monitoring using QuantumRingsLib version 0.10.x. 
+#   The circuit uses a Hadamard gate followed by a cascade of CNOT gates, and measures all qubits.
+# ---
 
 import QuantumRingsLib
 from QuantumRingsLib import QuantumRegister, ClassicalRegister, QuantumCircuit

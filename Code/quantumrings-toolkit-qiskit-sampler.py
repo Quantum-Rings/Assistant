@@ -1,3 +1,21 @@
+# ---
+# title: Qiskit Toolkit Sampler V1 Example
+# sdk:
+#   QuantumRingsLib: [0.10.x]
+#   quantumrings-toolkit-qiskit: [1.3.1, 1.4.0]
+#   Qiskit: [1.4.0]
+#   GPU-enabled: [false]
+# python: [3.11]
+# os: [Windows 11, Ubuntu 22.04]
+# tags: ['Qiskit', 'QrSamplerV1', 'sampling', 'measurement', 'shots', 'circuit execution']
+# description: >
+#   Demonstrates use of QrSamplerV1 to run a parameterized Qiskit QuantumCircuit on a Quantum Rings backend.
+#   Includes parameter definition using qiskit.circuit.Parameter, binding of values, and execution to retrieve 
+#   measurement outcomes. Highlights how QrSamplerV1 integrates with Qiskit primitives for lightweight sampling 
+#   tasks without requiring manual job polling.
+# ---
+
+
 """
 🚀 Example: Correct Usage of QrSamplerV1, QrSamplerV2, and QrBackendV2
 
@@ -113,6 +131,8 @@ pqc.measure_all()
 theta_values = [0, 1, 1, 2, 3, 5]  # Example parameter values
 
 # ✅ Correct usage of QrSamplerV1 (No backend required)
+# ✅ QrSamplerV1 - requires circuits, parameter_values, and parameters explicitly.
+# ❌ Do NOT use tuple format (e.g., (circuit, values, shots)) — that is only for QrSamplerV2.
 sampler_v1 = QrSamplerV1()
 job_v1 = sampler_v1.run(circuits=[pqc], parameter_values=[theta_values], parameters=[pqc.parameters])
 result_v1 = job_v1.result()
@@ -127,6 +147,9 @@ print("\n🚀 Running circuits with QrSamplerV2...")
 
 # ✅ Define a PUB (Processable Unit Block)
 # PUB Format: (QuantumCircuit, ParameterValues, Shots)
+# ✅ QrSamplerV2 - requires Processable Unit Blocks (PUBs) in the form of tuples.
+# Each tuple must be: (QuantumCircuit, parameter_values, shots)
+# ❌ This format does NOT work with QrSamplerV1.
 pub = (circuits[0], [], 1000)  # No parameters, 1000 shots
 
 # ✅ Correct instantiation of QrSamplerV2 (Backend required)

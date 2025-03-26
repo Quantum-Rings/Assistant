@@ -1,18 +1,19 @@
-"""
-🚀 Quantum Rings SDK: Using Parameters in Quantum Circuits
-
-📌 This script demonstrates:
-✅ How to use `Parameter` and `ParameterVector` for parameterized quantum gates.
-✅ How to assign values to parameters before execution.
-✅ Why `assign_parameters()` must be called BEFORE transpilation.
-
-⚠️ IMPORTANT WARNINGS:
-- ✅ Assign **all parameters** BEFORE running or transpiling the circuit.
-- ❌ `assign_parameters()` CANNOT be used after transpilation.
-- ❌ Quantum Rings SDK **does NOT require transpilation** for its native circuits.
-- ✅ Qiskit circuits **require Qiskit’s `transpile()` function** before execution on a Quantum Rings backend.
-
-"""
+# ---
+# title: Quantumringslib Param 10
+# sdk:
+#   QuantumRingsLib: [0.10.x]
+#   quantumrings-toolkit-qiskit: []
+#   GPU-enabled: [false]
+# python: [3.11]
+# os: [Windows 11, Ubuntu 22.04]
+# tags: ['parameters', 'assign_parameters', 'ParameterVector', 'QuantumRingsLib']
+# description: >
+#   Demonstrates parameterized quantum circuit construction using QuantumRingsLib 0.10.x.
+#   Shows how to use `Parameter` and `ParameterVector` for gates like `u()` and `mcp()`, 
+#   and correctly assign values using `.assign_parameters(..., inplace=True)`.
+#   Highlights best practices and pitfalls, such as avoiding mixed parameter types and 
+#   ensuring all keys in assignment dictionaries are strings.
+# ---
 
 # ✅ Import necessary libraries
 import QuantumRingsLib
