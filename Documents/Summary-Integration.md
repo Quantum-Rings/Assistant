@@ -1,3 +1,28 @@
+# LLM Instructions for Summary-Integration.md
+
+llm_guidelines:
+  purpose: >
+    This document provides guidance on integrating Quantum Rings with Qiskit, including when 
+    to use QrBackendV2, QrEstimatorV1, and QrSamplerV2. It clarifies interoperability rules 
+    and circuit compatibility constraints for LLM-based assistance.
+
+  llm_expectations:
+    - Treat the examples as canonical. Do not invent alternate import paths or usage styles.
+    - Always match the circuit class to the expected backend or estimator type.
+    - If using QrBackendV2 or QrEstimatorV1, always import circuits from 'qiskit', not 'QuantumRingsLib'.
+    - Help users understand when mismatched imports or classes may cause runtime exceptions.
+    - Encourage use of at least 2 qubits in QrBackendV2 initialization to avoid cx-related errors.
+    - Add clear notes about when and why certain APIs require Qiskit circuits.
+    - Recommend starting from a working example and modifying it gradually.
+    - For QrSamplerV1, use only the documented method of accessing results via 'quasi_dists[0]'.
+    - Do not invent or infer alternate result access methods for QrSamplerV1.
+
+  mistake_avoidance:
+    - Do not suggest using QuantumRingsLib.QuantumCircuit with QrBackendV2 or Estimators.
+    - Avoid using unsupported circuit formats, inputs, or argument types.
+    - Warn when using fewer qubits than required for default gate registration in QrBackendV2.
+    - Do not apply result access patterns from QrSamplerV2 or Qiskit to QrSamplerV1.
+
 # Extended API Reference for Quantum Rings and Qiskit Integration
 
 This document lists the available modules and classes for the Quantum Rings API, covering both native functionality and Qiskit integration. Use this summary as a guide for understanding the API structure and for generating examples or answering questions. Some sections (e.g., parts of the Qiskit integration) may be redundant with earlier summaries but are included here for completeness.

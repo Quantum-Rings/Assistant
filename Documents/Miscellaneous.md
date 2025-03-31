@@ -125,11 +125,24 @@ The only confirmed API improvement in 0.10.x is:
 * Positional arguments in backend.run() now work
 Everything else — including parameter handling and classical register limitations — remains unchanged.
 
-# ⚠️ Common Pitfalls to Avoid (LLM Guidance)
+# Common Pitfalls to Avoid (LLM Guidance)
 * Do not assume Qiskit’s assign_parameters() or bind_parameters() work in the native SDK
 * If you see a pybind11 casting error, it’s likely related to parameter usage
 * If a user gets a TypeError from backend.run(qc, 100), they are using 0.9.x
 * Always use shots=... syntax for version-safe code
+
+**Warning for QrBackendV2 Users**
+* When using `QrBackendV2`, always set `num_qubits >= 2`, even if your circuit only uses 1 qubit.
+* This is because `QrBackendV2` internally registers support for common 2-qubit gates (like `cx`) during initialization. 
+If `num_qubits=1`, it will raise:
+```
+Exception: Gate cx needs more qubits than the total qubits 1 enabled by the backend.
+```
+**Warning for QrSamplerV1 Result Access**
+* The result object from `QrSamplerV1` must be accessed via `result.quasi_dists[0]`.
+* Do not use `.get_counts()`, `.data`, or indexing like `result[0]`—these will fail.
+* Only the documented result access pattern is valid. Do not infer or invent alternate access methods.
+
 
 # 🧪 Additional Tests (For Future Enhancements)
 If needed, consider testing:
@@ -169,23 +182,32 @@ Use the following format:
 
 All fields are optional, but inclusion is strongly encouraged.
 
-### 📘 Version Status Annotations
+### Version Status Annotations (ASCII-Only)
+Each version listed must be explicitly annotated to indicate its compatibility status:
 
-Each version in a list may be annotated to describe its compatibility:
+* version+ (e.g., 0.10+) — confirmed working (tested and validated)
+* version? (e.g., 1.2.0?) — untested, but expected to work
+* version! (e.g., 0.9!) — known to be broken or incompatible
 
-- `version` (e.g., `0.10`) — ✅ confirmed working (tested)
-- `version?` (e.g., `1.2.0?`) — ❓ untested, but expected to work
-- `version!` (e.g., `0.9!`) — ❌ known not to work or incompatible
+Examples
+```
+QuantumRingsLib: [0.9+, 0.10+]
+# Both versions have been tested and are confirmed working
 
-Examples:
+quantumrings-toolkit-qiskit: [1.2.0+, 1.3.0?]
+# 1.2.0 is tested; 1.3.0 is untested but expected to work
 
-- `QuantumRingsLib: [0.9, 0.10]` — tested and works in both versions
-- `quantumrings-toolkit-qiskit: [1.2.0, 1.3.0?]` — 1.2.0 confirmed, 1.3.0 untested
-- `GPU-enabled: [true, false!]` — works on GPU, known to fail on CPU-only systems
-- `python: [3.11, 3.10?]` — tested on 3.11, expected to work on 3.10
-- `os: [windows-11, linux-ubuntu-22.04?]` — tested on Windows, untested on Linux
+GPU-enabled: [true+, false!]
+# Works on GPU, known to fail on CPU-only systems
 
-**Note:** The absence of a version does **not** imply incompatibility. It simply means the version has not been tested or declared.
+python: [3.11+, 3.10?]
+# Tested on 3.11, 3.10 is unverified
+
+os: [windows-11+, linux-ubuntu-22.04?]
+# Tested on Windows 11, untested on Ubuntu
+```
+
+These annotations are required for all version metadata and must use only the following ASCII suffixes: +, ?, or !. Avoid emojis or non-standard markup to ensure consistent parsing by automated tools and LLMs.
 
 ### 🧠 Purpose
 

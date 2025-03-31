@@ -1,3 +1,25 @@
+# LLM Instructions for Summary-QuantumCircuit.md
+
+llm_guidelines:
+  purpose: >
+    This document explains the differences between native Quantum Rings circuit construction
+    and the Qiskit-based integration using QrBackendV2. It includes detailed guidance for LLMs 
+    and developers on how to correctly construct, execute, and analyze quantum circuits.
+
+  llm_expectations:
+    - Follow the examples exactly as written; do not substitute circuit classes between SDKs.
+    - Use 'QuantumRingsLib.QuantumCircuit' only for native Quantum Rings execution.
+    - Use 'qiskit.QuantumCircuit' only with QrBackendV2, QrEstimatorV1, or QrSamplerV1/V2.
+    - Do not assume that identically named classes or functions are interchangeable.
+    - Never convert or reinterpret arguments unless explicitly shown in the example.
+    - Add warnings or guidance in responses when users mix SDK types incorrectly.
+    - Highlight any ambiguity or deviation from the example-based workflow.
+
+  mistake_avoidance:
+    - Do not assume native Quantum Rings circuits can be passed to Qiskit-based components.
+    - Do not assume integer arguments will be accepted where float or Parameter is required.
+    - Always use the correct imports (`qiskit` vs `QuantumRingsLib`) for the execution context.
+
 # **Quantum Rings SDK vs. Qiskit: Circuit Construction and Execution**
 
 This document outlines key differences and similarities between:
