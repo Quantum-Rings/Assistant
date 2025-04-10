@@ -1,11 +1,12 @@
 # ---
 # title: Quantumringslib Quantumcircuit
-# sdk:
-#   QuantumRingsLib: [0.10.x]
+# sdk ["tested(+)", "fails(!)", "untested(?)"]:
+#   QuantumRingsLib: [0.9.11(!), 0.10.11(+)]
 #   quantumrings-toolkit-qiskit: []
+#   Qiskit: []
 #   GPU-enabled: [false]
-# python: [3.11]
-# os: [Windows 11, Ubuntu 22.04]
+# python: [3.11(+)]
+# os: [Windows 11(+), Ubuntu 22.04(?)]
 # tags: ['QuantumCircuit', 'construction', 'registers', 'QuantumRingsLib']
 # description: >
 #   Illustrates how to construct a quantum circuit using the native QuantumRingsLib QuantumCircuit class.
@@ -13,8 +14,6 @@
 #   usage of basic gates and circuit attributes. Intended to familiarize users with low-level
 #   circuit building in the Quantum Rings SDK.
 # ---
-
-
 
 # Import the necessary modules from the Quantum Rings SDK.
 import QuantumRingsLib

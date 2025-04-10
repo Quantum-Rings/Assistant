@@ -1,12 +1,15 @@
 # ---
 # title: Qiskit Toolkit Sampler V1 Example
-# sdk:
-#   QuantumRingsLib: [0.10.x]
-#   quantumrings-toolkit-qiskit: [1.3.1, 1.4.0]
-#   Qiskit: [1.4.0]
+# synergy: |
+#   - quantumrings.toolkit.qiskit 0.1.10 fails(!) with Qiskit 2.0
+#   - A future version (0.1.11?) may resolve Qiskit 2.0 compatibility
+# sdk ["tested(+)", "fails(!)", "untested(?)"]:
+#   QuantumRingsLib: [0.9.11(+), 0.10.11(+)]
+#   quantumrings-toolkit-qiskit: [0.1.10(+)]
+#   Qiskit: [1.3.1(+), 1.4.1(+), 2.0(?)]
 #   GPU-enabled: [false]
-# python: [3.11]
-# os: [Windows 11, Ubuntu 22.04]
+# python: [3.11(+)]
+# os: [Windows 11(+), Ubuntu 22.04(?)]
 # tags: ['Qiskit', 'QrSamplerV1', 'sampling', 'measurement', 'shots', 'circuit execution']
 # description: >
 #   Demonstrates use of QrSamplerV1 to run a parameterized Qiskit QuantumCircuit on a Quantum Rings backend.
@@ -46,8 +49,8 @@ from qiskit.circuit.equivalence_library import SessionEquivalenceLibrary
 # 🔹 Initialize Quantum Rings Backend
 # ===============================
 provider = QuantumRingsProvider()
-shots = 1000
 backend = QrBackendV2(provider=provider, num_qubits=2)
+shots = 1000
 
 # ===============================
 # 🔹 Construct Circuits

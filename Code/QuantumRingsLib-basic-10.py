@@ -1,11 +1,12 @@
 # ---
 # title: Quantumringslib Basic 10
-# sdk:
-#   QuantumRingsLib: [0.10.x]
+# sdk ["tested(+)", "fails(!)", "untested(?)"]:
+#   QuantumRingsLib: [0.9.11(!), 0.10.11(+)]
 #   quantumrings-toolkit-qiskit: []
+#   Qiskit: []
 #   GPU-enabled: [false]
-# python: [3.11]
-# os: [Windows 11, Ubuntu 22.04]
+# python: [3.11(+)]
+# os: [Windows 11(+), Ubuntu 22.04(?)]
 # tags: ['basic', 'execution', 'job_monitor', 'backend.run']
 # description: >
 #   This example demonstrates a simple Qiskit circuit execution on Quantum Rings. 
@@ -38,7 +39,7 @@ provider.active_account()
 
 q = QuantumRegister(num_qubits)
 c = ClassicalRegister(num_qubits)
-qc = QuantumCircuit(q, c)
+qc = QuantumCircuit(q, c) # fails on QuantumRingsLib 0.9.11. For 0.9.11 use "qc = QuantumCircuit(num_qubits)"
 
 # construct the quantum circuit
 
@@ -49,8 +50,6 @@ for i in range (qc.num_qubits - 1):
 qc.measure_all();
 
 # Executing the Code
-
-qc.measure_all();
 
 job = backend.run(qc, shots)
 job_monitor(job)

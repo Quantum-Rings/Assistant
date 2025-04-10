@@ -1,11 +1,11 @@
 # ---
 # title: Quantumringslib No Slicing 10
 # sdk:
-#   QuantumRingsLib: [0.10.x]
+#   QuantumRingsLib: [0.10.11(+)]
 #   quantumrings-toolkit-qiskit: []
 #   GPU-enabled: [false]
-# python: [3.11]
-# os: [Windows 11, Ubuntu 22.04]
+# python: [3.11(+)]
+# os: [Windows 11(+), Ubuntu 22.04]
 # tags: ['compatibility', 'classical register', 'indexing', 'QuantumRingsLib']
 # description: >
 #   Compares classical register indexing behavior between Qiskit and QuantumRingsLib. 

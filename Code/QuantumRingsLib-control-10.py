@@ -1,11 +1,12 @@
 # ---
 # title: Quantumringslib Control 10
-# sdk:
-#   QuantumRingsLib: [0.10.x]
+# sdk ["tested(+)", "fails(!)", "untested(?)"]:
+#   QuantumRingsLib: [0.9.11(!), 0.10.11(+)]
 #   quantumrings-toolkit-qiskit: []
+#   Qiskit: []
 #   GPU-enabled: [false]
-# python: [3.11]
-# os: [Windows 11, Ubuntu 22.04]
+# python: [3.11(+)]
+# os: [Windows 11(+), Ubuntu 22.04(?)]
 # tags: ['c_if', 'conditional', 'control-flow', 'job_monitor']
 # description: >
 #   Demonstrates use of conditional quantum logic in QuantumRingsLib version 0.10.x, 
@@ -27,7 +28,7 @@ num_qubits=4
 provider.active_account()
 q = QuantumRegister(num_qubits)
 c = ClassicalRegister(num_qubits)
-qc = QuantumCircuit(q, c)
+qc = QuantumCircuit(q, c) # fails on QuantumRingsLib 0.9.11. For 0.9.11 use "qc = QuantumCircuit(num_qubits)"
 qc.x([q[0],q[1]])
 qc.measure(0, 0)
 qc.measure(1, 1)

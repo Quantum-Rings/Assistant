@@ -1,11 +1,12 @@
 # ---
 # title: Quantumringslib Param 10
-# sdk:
-#   QuantumRingsLib: [0.10.x]
+# sdk ["tested(+)", "fails(!)", "untested(?)"]:
+#   QuantumRingsLib: [0.9.11(!), 0.10.11(+)]
 #   quantumrings-toolkit-qiskit: []
+#   Qiskit: []
 #   GPU-enabled: [false]
-# python: [3.11]
-# os: [Windows 11, Ubuntu 22.04]
+# python: [3.11(+)]
+# os: [Windows 11(+), Ubuntu 22.04(?)]
 # tags: ['parameters', 'assign_parameters', 'ParameterVector', 'QuantumRingsLib']
 # description: >
 #   Demonstrates parameterized quantum circuit construction using QuantumRingsLib 0.10.x.
@@ -19,7 +20,6 @@
 import QuantumRingsLib
 from QuantumRingsLib import QuantumRegister, ClassicalRegister, QuantumCircuit, QuantumRingsProvider
 from QuantumRingsLib import Parameter, ParameterVector
-from qiskit import transpile  # ✅ Qiskit's transpile function (only for Qiskit circuits)
 from math import pi
 
 # =====================================
@@ -59,11 +59,15 @@ qc.x(q[4])
 qc.h(q[4])
 
 # ✅ Safe use of parameters BEFORE execution
-qc.mcp(theta, [q[0], q[1], q[3]], q[2])  
+#qc.mcp(theta, [q[0], q[1], q[3]], q[2])  
+qc.mcp(0.3, [0, 1, 3], 2)
 qc.rx(phi, 3)
 qc.ry(pi / 2, 4)  
 qc.rz(myparamvec[5], 0)
 qc.u(myparamvec[0], myparamvec[1], myparamvec[2], 1)
+
+# Add measurement
+qc.measure_all()
 
 # =====================================
 # ✅ STEP 5: Assign Parameter Values BEFORE Execution
@@ -91,11 +95,7 @@ qc.assign_parameters(myparam, inplace=True)  # ✅ Works correctly
 print("\n🚀 Executing the Quantum Rings circuit...")
 job = backend.run(qc, shots=shots)
 
-# ✅ Monitor Job Execution
-print("🔄 Waiting for job to complete...")
-while not job.in_final_state():
-    print(f"Job status: {job.status()}")
-    time.sleep(1)
+
 
 # ✅ Retrieve and Display Results
 result = job.result()

@@ -1,12 +1,15 @@
 # ---
 # title: Qiskit Toolkit Estimator V2 10
-# sdk:
-#   QuantumRingsLib: [0.10.x]
-#   quantumrings-toolkit-qiskit: [1.3.1, 1.4.0]
-#   Qiskit: [1.4.0]
+# synergy: |
+#   - quantumrings.toolkit.qiskit 0.1.10 fails(!) with Qiskit 2.0
+#   - A future version (0.1.11?) may resolve Qiskit 2.0 compatibility
+# sdk ["tested(+)", "fails(!)", "untested(?)"]:
+#   QuantumRingsLib: [0.9.11(+), 0.10.11(+)]
+#   quantumrings-toolkit-qiskit: [0.1.10(+)]
+#   Qiskit: [1.3.1(+), 1.4.1(+), 2.0(?)]
 #   GPU-enabled: [false]
-# python: [3.11]
-# os: [Windows 11, Ubuntu 22.04]
+# python: [3.11(+)]
+# os: [Windows 11(+), Ubuntu 22.04(?)]
 # tags: ['Qiskit', 'QrEstimatorV2', 'SparsePauliOp', 'expectation value', 'estimator', 'multi-observable']
 # description: >
 #   Demonstrates use of QrEstimatorV2 to compute expectation values over multiple observables 

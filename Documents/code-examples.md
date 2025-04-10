@@ -1,32 +1,68 @@
 # Auto-Generated Code Examples
 
 
-> 📌 **Note:**
-> This document contains **embedded Python files** from the code examples directory.
-> If modifying examples, ensure that changes are made to the **corresponding Python script** stored in the repository.
+## Version & Synergy Notation
+
+> We use `(+)`, `(!)`, and `(?)` to denote:
+> - `(+)` => tested & works on that version
+> - `(!)` => known to fail on that version (or combination)
+> - `(?)` => untested/unknown behavior
+
+> **Synergy** lines indicate module-version conflicts or future support notes.
+
+## Synergy & Compatibility Summary
+
+> **Note**: The table below captures synergy lines from each code file's header. 
+> It's meant to quickly show known module-version interactions.
+
+- **quantumrings-toolkit-qiskit-basic-10.py**:
+  - quantumrings.toolkit.qiskit 0.1.10 fails(!) with Qiskit 2.0
+  - A future version (0.1.11?) may resolve Qiskit 2.0 compatibility
+- **quantumrings-toolkit-qiskit-estimatorV1-10.py**:
+  - quantumrings.toolkit.qiskit 0.1.10 fails(!) with Qiskit 2.0
+  - A future version (0.1.11?) may resolve Qiskit 2.0 compatibility
+- **quantumrings-toolkit-qiskit-estimatorV2-10.py**:
+  - quantumrings.toolkit.qiskit 0.1.10 fails(!) with Qiskit 2.0
+  - A future version (0.1.11?) may resolve Qiskit 2.0 compatibility
+- **quantumrings-toolkit-qiskit-multi-10.py**:
+  - quantumrings.toolkit.qiskit 0.1.10 fails(!) with Qiskit 2.0
+  - A future version (0.1.11?) may resolve Qiskit 2.0 compatibility
+- **quantumrings-toolkit-qiskit-qaoa.py**:
+  - quantumrings.toolkit.qiskit 0.1.10 fails(!) with Qiskit 2.0
+  - A future version (0.1.11?) may resolve Qiskit 2.0 compatibility
+- **quantumrings-toolkit-qiskit-quantumcircuit.py**:
+  - quantumrings.toolkit.qiskit 0.1.10 fails(!) with Qiskit 2.0
+  - A future version (0.1.11?) may resolve Qiskit 2.0 compatibility
+- **quantumrings-toolkit-qiskit-sampler.py**:
+  - quantumrings.toolkit.qiskit 0.1.10 fails(!) with Qiskit 2.0
+  - A future version (0.1.11?) may resolve Qiskit 2.0 compatibility
+
 
 ## **LLM Instructions**
 
-> **Note for LLMs:**
 > - These examples are collected from real-world use cases.
-> - Each example is preceded by a summary explaining its purpose.
-> - If troubleshooting, refer to the **Common Issues** section at the bottom of this document.
-> - When integrating, check if transpilation (`transpile()`) is required.
+> - Each file includes a commented header with `# sdk:` or `# synergy:` lines for more details.
+> - If uncertain about user environment, ask which versions they have and reference the synergy info.
+> - If troubleshooting, see the **Common Issues** section at the bottom.
+> - Some examples may require Qiskit transpilation if they're using `quantumrings.toolkit.qiskit`.
+
+
+> **Note**:
+> The following sections embed the exact `.py` files, including any metadata in the header.
 
 
 ## QuantumRingsLib-basic-10.py
 
-**Summary:** This example demonstrates a simple circuit execution with proper job monitoring.
-
 ```python
 # ---
 # title: Quantumringslib Basic 10
-# sdk:
-#   QuantumRingsLib: [0.10.x]
+# sdk ["tested(+)", "fails(!)", "untested(?)"]:
+#   QuantumRingsLib: [0.9.11(!), 0.10.11(+)]
 #   quantumrings-toolkit-qiskit: []
+#   Qiskit: []
 #   GPU-enabled: [false]
-# python: [3.11]
-# os: [Windows 11, Ubuntu 22.04]
+# python: [3.11(+)]
+# os: [Windows 11(+), Ubuntu 22.04(?)]
 # tags: ['basic', 'execution', 'job_monitor', 'backend.run']
 # description: >
 #   This example demonstrates a simple Qiskit circuit execution on Quantum Rings. 
@@ -59,7 +95,7 @@ provider.active_account()
 
 q = QuantumRegister(num_qubits)
 c = ClassicalRegister(num_qubits)
-qc = QuantumCircuit(q, c)
+qc = QuantumCircuit(q, c) # fails on QuantumRingsLib 0.9.11. For 0.9.11 use "qc = QuantumCircuit(num_qubits)"
 
 # construct the quantum circuit
 
@@ -71,8 +107,6 @@ qc.measure_all();
 
 # Executing the Code
 
-qc.measure_all();
-
 job = backend.run(qc, shots)
 job_monitor(job)
 result = job.result()
@@ -82,17 +116,16 @@ print(result)
 
 ## QuantumRingsLib-basic-9.py
 
-**Summary:** This example demonstrates a simple circuit execution with proper job monitoring.
-
 ```python
 # ---
 # title: Basic Quantum Circuit Execution (QuantumRingsLib 0.9.x)
-# sdk:
-#   QuantumRingsLib: [0.9.11]
+# sdk ["tested(+)", "fails(!)", "untested(?)"]:
+#   QuantumRingsLib: [0.9.11(+), 0.10.11(!)]
 #   quantumrings-toolkit-qiskit: []
+#   Qiskit: []
 #   GPU-enabled: [false]
-# python: [3.11]
-# os: [Windows 11, Ubuntu 22.04]
+# python: [3.11(+)]
+# os: [Windows 11(+), Ubuntu 22.04(?)]
 # tags: [basic, execution, QuantumRingsLib, backend.run, job_monitor]
 # description: >
 #   Demonstrates how to execute a simple quantum circuit using QuantumRingsLib <= 0.9.11.
@@ -123,7 +156,7 @@ provider.active_account()
 
 # create circuit
 
-qc = QuantumCircuit(num_qubits)
+qc = QuantumCircuit(num_qubits) # fails on QuantumRingsLib 0.10.11. For 0.10.11 use "qc = QuantumCircuit(q, c)" 
 
 # construct the quantum circuit
 
@@ -131,7 +164,7 @@ qc.h(0);
 for i in range (qc.num_qubits - 1):
     qc.cnot(i, i + 1);
 
-qc.measure_all()
+qc.measure_all() 
 
 # Executing the Code
 
@@ -151,17 +184,16 @@ print(counts)
 
 ## QuantumRingsLib-control-10.py
 
-**Summary:** This example demonstrates a specific function. Refer to the script for more details.
-
 ```python
 # ---
 # title: Quantumringslib Control 10
-# sdk:
-#   QuantumRingsLib: [0.10.x]
+# sdk ["tested(+)", "fails(!)", "untested(?)"]:
+#   QuantumRingsLib: [0.9.11(!), 0.10.11(+)]
 #   quantumrings-toolkit-qiskit: []
+#   Qiskit: []
 #   GPU-enabled: [false]
-# python: [3.11]
-# os: [Windows 11, Ubuntu 22.04]
+# python: [3.11(+)]
+# os: [Windows 11(+), Ubuntu 22.04(?)]
 # tags: ['c_if', 'conditional', 'control-flow', 'job_monitor']
 # description: >
 #   Demonstrates use of conditional quantum logic in QuantumRingsLib version 0.10.x, 
@@ -183,7 +215,7 @@ num_qubits=4
 provider.active_account()
 q = QuantumRegister(num_qubits)
 c = ClassicalRegister(num_qubits)
-qc = QuantumCircuit(q, c)
+qc = QuantumCircuit(q, c) # fails on QuantumRingsLib 0.9.11. For 0.9.11 use "qc = QuantumCircuit(num_qubits)"
 qc.x([q[0],q[1]])
 qc.measure(0, 0)
 qc.measure(1, 1)
@@ -203,17 +235,15 @@ print(counts)
 
 ## QuantumRingsLib-no-slicing-10.py
 
-**Summary:** This example demonstrates a specific function. Refer to the script for more details.
-
 ```python
 # ---
 # title: Quantumringslib No Slicing 10
 # sdk:
-#   QuantumRingsLib: [0.10.x]
+#   QuantumRingsLib: [0.10.11(+)]
 #   quantumrings-toolkit-qiskit: []
 #   GPU-enabled: [false]
-# python: [3.11]
-# os: [Windows 11, Ubuntu 22.04]
+# python: [3.11(+)]
+# os: [Windows 11(+), Ubuntu 22.04]
 # tags: ['compatibility', 'classical register', 'indexing', 'QuantumRingsLib']
 # description: >
 #   Compares classical register indexing behavior between Qiskit and QuantumRingsLib. 
@@ -276,17 +306,16 @@ except Exception as e:
 
 ## QuantumRingsLib-param-10.py
 
-**Summary:** This example demonstrates a specific function. Refer to the script for more details.
-
 ```python
 # ---
 # title: Quantumringslib Param 10
-# sdk:
-#   QuantumRingsLib: [0.10.x]
+# sdk ["tested(+)", "fails(!)", "untested(?)"]:
+#   QuantumRingsLib: [0.9.11(!), 0.10.11(+)]
 #   quantumrings-toolkit-qiskit: []
+#   Qiskit: []
 #   GPU-enabled: [false]
-# python: [3.11]
-# os: [Windows 11, Ubuntu 22.04]
+# python: [3.11(+)]
+# os: [Windows 11(+), Ubuntu 22.04(?)]
 # tags: ['parameters', 'assign_parameters', 'ParameterVector', 'QuantumRingsLib']
 # description: >
 #   Demonstrates parameterized quantum circuit construction using QuantumRingsLib 0.10.x.
@@ -300,7 +329,6 @@ except Exception as e:
 import QuantumRingsLib
 from QuantumRingsLib import QuantumRegister, ClassicalRegister, QuantumCircuit, QuantumRingsProvider
 from QuantumRingsLib import Parameter, ParameterVector
-from qiskit import transpile  # ✅ Qiskit's transpile function (only for Qiskit circuits)
 from math import pi
 
 # =====================================
@@ -340,11 +368,15 @@ qc.x(q[4])
 qc.h(q[4])
 
 # ✅ Safe use of parameters BEFORE execution
-qc.mcp(theta, [q[0], q[1], q[3]], q[2])  
+#qc.mcp(theta, [q[0], q[1], q[3]], q[2])  
+qc.mcp(0.3, [0, 1, 3], 2)
 qc.rx(phi, 3)
 qc.ry(pi / 2, 4)  
 qc.rz(myparamvec[5], 0)
 qc.u(myparamvec[0], myparamvec[1], myparamvec[2], 1)
+
+# Add measurement
+qc.measure_all()
 
 # =====================================
 # ✅ STEP 5: Assign Parameter Values BEFORE Execution
@@ -372,11 +404,7 @@ qc.assign_parameters(myparam, inplace=True)  # ✅ Works correctly
 print("\n🚀 Executing the Quantum Rings circuit...")
 job = backend.run(qc, shots=shots)
 
-# ✅ Monitor Job Execution
-print("🔄 Waiting for job to complete...")
-while not job.in_final_state():
-    print(f"Job status: {job.status()}")
-    time.sleep(1)
+
 
 # ✅ Retrieve and Display Results
 result = job.result()
@@ -399,8 +427,6 @@ print("\n🎉 SCRIPT COMPLETE: Follow best practices to avoid parameter assignme
 
 
 ## QuantumRingsLib-parameter-binding-test.py
-
-**Summary:** This example demonstrates a specific function. Refer to the script for more details.
 
 ```python
 # ---
@@ -530,17 +556,16 @@ print("\n✅ All tests completed.")
 
 ## QuantumRingsLib-provider.py
 
-**Summary:** This example demonstrates a specific function. Refer to the script for more details.
-
 ```python
 # ---
 # title: Quantumringslib Provider Setup
-# sdk:
-#   QuantumRingsLib: [0.9.x, 0.10.x]
+# sdk ["tested(+)", "fails(!)", "untested(?)"]:
+#   QuantumRingsLib: [0.9.11(+), 0.10.11(+)]
 #   quantumrings-toolkit-qiskit: []
+#   Qiskit: []
 #   GPU-enabled: [false]
-# python: [3.11]
-# os: [Windows 11, Ubuntu 22.04]
+# python: [3.11(+)]
+# os: [Windows 11(+), Ubuntu 22.04(?)]
 # tags: ['provider', 'authentication', 'QuantumRingsProvider', 'setup']
 # description: >
 #   Demonstrates how to initialize and activate a QuantumRingsProvider using saved credentials 
@@ -563,17 +588,16 @@ print(provider.saved_accounts(False, "default"))
 
 ## QuantumRingsLib-qasm-10.py
 
-**Summary:** This example demonstrates a specific function. Refer to the script for more details.
-
 ```python
 # ---
 # title: Quantumringslib Qasm 10
-# sdk:
-#   QuantumRingsLib: [0.10.x]
+# sdk ["tested(+)", "fails(!)", "untested(?)"]:
+#   QuantumRingsLib: [0.9.11(+), 0.10.11(+)]
 #   quantumrings-toolkit-qiskit: []
+#   Qiskit: []
 #   GPU-enabled: [false]
-# python: [3.11]
-# os: [Windows 11, Ubuntu 22.04]
+# python: [3.11(+)]
+# os: [Windows 11(+), Ubuntu 22.04(?)]
 # tags: ['qasm', 'qasm2', 'load', 'QuantumRingsLib', 'circuit loading']
 # description: >
 #   Demonstrates how to load and parse QASM 2.0 content into a QuantumRingsLib QuantumCircuit 
@@ -594,17 +618,16 @@ qc.qasm(True)
 
 ## QuantumRingsLib-quantumcircuit.py
 
-**Summary:** This example illustrates how to construct a quantum circuit compatible with the framework.
-
 ```python
 # ---
 # title: Quantumringslib Quantumcircuit
-# sdk:
-#   QuantumRingsLib: [0.10.x]
+# sdk ["tested(+)", "fails(!)", "untested(?)"]:
+#   QuantumRingsLib: [0.9.11(!), 0.10.11(+)]
 #   quantumrings-toolkit-qiskit: []
+#   Qiskit: []
 #   GPU-enabled: [false]
-# python: [3.11]
-# os: [Windows 11, Ubuntu 22.04]
+# python: [3.11(+)]
+# os: [Windows 11(+), Ubuntu 22.04(?)]
 # tags: ['QuantumCircuit', 'construction', 'registers', 'QuantumRingsLib']
 # description: >
 #   Illustrates how to construct a quantum circuit using the native QuantumRingsLib QuantumCircuit class.
@@ -612,8 +635,6 @@ qc.qasm(True)
 #   usage of basic gates and circuit attributes. Intended to familiarize users with low-level
 #   circuit building in the Quantum Rings SDK.
 # ---
-
-
 
 # Import the necessary modules from the Quantum Rings SDK.
 import QuantumRingsLib
@@ -676,18 +697,19 @@ plt.show()
 
 ## quantumrings-toolkit-qiskit-basic-10.py
 
-**Summary:** This example demonstrates a simple circuit execution with proper job monitoring.
-
 ```python
 # ---
 # title: Qiskit Toolkit Basic 10
-# sdk:
-#   QuantumRingsLib: [0.10.x]
-#   quantumrings-toolkit-qiskit: [1.3.1, 1.4.0]
-#   Qiskit: [1.4.0]
+# synergy: |
+#   - quantumrings.toolkit.qiskit 0.1.10 fails(!) with Qiskit 2.0
+#   - A future version (0.1.11?) may resolve Qiskit 2.0 compatibility
+# sdk ["tested(+)", "fails(!)", "untested(?)"]:
+#   QuantumRingsLib: [0.9.11(+), 0.10.11(+)]
+#   quantumrings-toolkit-qiskit: [0.1.10(+)]
+#   Qiskit: [1.3.1(+), 1.4.1(+), 2.0(?)]
 #   GPU-enabled: [false]
-# python: [3.11]
-# os: [Windows 11, Ubuntu 22.04]
+# python: [3.11(+)]
+# os: [Windows 11(+), Ubuntu 22.04(?)]
 # tags: ['Qiskit', 'QrBackendV2', 'transpile', 'manual job monitoring', 'execution']
 # description: >
 #   Demonstrates execution of a Qiskit-style quantum circuit on Quantum Rings hardware using QrBackendV2.
@@ -758,18 +780,19 @@ print("✅ Measurement Results:", counts)
 
 ## quantumrings-toolkit-qiskit-estimatorV1-10.py
 
-**Summary:** This example shows how to use an estimator for quantum expectation value calculations.
-
 ```python
 # ---
 # title: Qiskit Toolkit Estimator V1 10
-# sdk:
-#   QuantumRingsLib: [0.10.x]
-#   quantumrings-toolkit-qiskit: [1.3.1, 1.4.0]
-#   Qiskit: [1.4.0]
+# synergy: |
+#   - quantumrings.toolkit.qiskit 0.1.10 fails(!) with Qiskit 2.0
+#   - A future version (0.1.11?) may resolve Qiskit 2.0 compatibility
+# sdk ["tested(+)", "fails(!)", "untested(?)"]:
+#   QuantumRingsLib: [0.9.11(+), 0.10.11(+)]
+#   quantumrings-toolkit-qiskit: [0.1.10(+)]
+#   Qiskit: [1.3.1(+), 1.4.1(+), 2.0(?)]
 #   GPU-enabled: [false]
-# python: [3.11]
-# os: [Windows 11, Ubuntu 22.04]
+# python: [3.11(+)]
+# os: [Windows 11(+), Ubuntu 22.04(?)]
 # tags: ['Qiskit', 'QrEstimatorV1', 'expectation value', 'SparsePauliOp', 'estimator']
 # description: >
 #   Demonstrates use of QrEstimatorV1 from the quantumrings-toolkit-qiskit package to compute 
@@ -884,18 +907,19 @@ print("Expectation value of ZZ =", expectation_zz)
 
 ## quantumrings-toolkit-qiskit-estimatorV2-10.py
 
-**Summary:** This example shows how to use an estimator for quantum expectation value calculations.
-
 ```python
 # ---
 # title: Qiskit Toolkit Estimator V2 10
-# sdk:
-#   QuantumRingsLib: [0.10.x]
-#   quantumrings-toolkit-qiskit: [1.3.1, 1.4.0]
-#   Qiskit: [1.4.0]
+# synergy: |
+#   - quantumrings.toolkit.qiskit 0.1.10 fails(!) with Qiskit 2.0
+#   - A future version (0.1.11?) may resolve Qiskit 2.0 compatibility
+# sdk ["tested(+)", "fails(!)", "untested(?)"]:
+#   QuantumRingsLib: [0.9.11(+), 0.10.11(+)]
+#   quantumrings-toolkit-qiskit: [0.1.10(+)]
+#   Qiskit: [1.3.1(+), 1.4.1(+), 2.0(?)]
 #   GPU-enabled: [false]
-# python: [3.11]
-# os: [Windows 11, Ubuntu 22.04]
+# python: [3.11(+)]
+# os: [Windows 11(+), Ubuntu 22.04(?)]
 # tags: ['Qiskit', 'QrEstimatorV2', 'SparsePauliOp', 'expectation value', 'estimator', 'multi-observable']
 # description: >
 #   Demonstrates use of QrEstimatorV2 to compute expectation values over multiple observables 
@@ -1028,18 +1052,19 @@ for i, obs in enumerate(["ZZ", "XX"]):
 
 ## quantumrings-toolkit-qiskit-multi-10.py
 
-**Summary:** This example demonstrates how to batch execute multiple circuits.
-
 ```python
 # ---
 # title: Qiskit Toolkit Multi-Circuit Sampling 10
-# sdk:
-#   QuantumRingsLib: [0.10.x]
-#   quantumrings-toolkit-qiskit: [1.3.1, 1.4.0]
-#   Qiskit: [1.4.0]
+# synergy: |
+#   - quantumrings.toolkit.qiskit 0.1.10 fails(!) with Qiskit 2.0
+#   - A future version (0.1.11?) may resolve Qiskit 2.0 compatibility
+# sdk ["tested(+)", "fails(!)", "untested(?)"]:
+#   QuantumRingsLib: [0.9.11(+), 0.10.11(+)]
+#   quantumrings-toolkit-qiskit: [0.1.10(+)]
+#   Qiskit: [1.3.1(+), 1.4.1(+), 2.0(?)]
 #   GPU-enabled: [false]
-# python: [3.11]
-# os: [Windows 11, Ubuntu 22.04]
+# python: [3.11(+)]
+# os: [Windows 11(+), Ubuntu 22.04(?)]
 # tags: ['Qiskit', 'QrSamplerV2', 'multi-circuit', 'sampling', 'batch execution', 'shots']
 # description: >
 #   Demonstrates batch execution of multiple Qiskit circuits using QrSamplerV2 in the Quantum Rings SDK.
@@ -1152,18 +1177,19 @@ for i, (name, circuit) in enumerate(circuits):
 
 ## quantumrings-toolkit-qiskit-qaoa.py
 
-**Summary:** This example demonstrates a specific function. Refer to the script for more details.
-
 ```python
 # ---
 # title: Qiskit Toolkit QAOA Example
-# sdk:
-#   QuantumRingsLib: [0.10.x]
-#   quantumrings-toolkit-qiskit: [1.3.1, 1.4.0]
-#   Qiskit: [1.4.0]
+# synergy: |
+#   - quantumrings.toolkit.qiskit 0.1.10 fails(!) with Qiskit 2.0
+#   - A future version (0.1.11?) may resolve Qiskit 2.0 compatibility
+# sdk ["tested(+)", "fails(!)", "untested(?)"]:
+#   QuantumRingsLib: [0.9.11(+), 0.10.11(+)]
+#   quantumrings-toolkit-qiskit: [0.1.10(+)]
+#   Qiskit: [1.3.1(+), 1.4.1(+), 2.0(?)]
 #   GPU-enabled: [false]
-# python: [3.11]
-# os: [Windows 11, Ubuntu 22.04]
+# python: [3.11(+)]
+# os: [Windows 11(+), Ubuntu 22.04(?)]
 # tags: ['Qiskit', 'QAOA', 'variational circuit', 'sampler', 'optimization', 'quantum algorithm']
 # description: >
 #   Demonstrates how to build and execute a QAOA variational circuit using Qiskit with Quantum Rings integration.
@@ -1285,18 +1311,19 @@ print("Expectation Value (Qiskit QAOAAnsatz):", result_qaoa.get_counts())
 
 ## quantumrings-toolkit-qiskit-quantumcircuit.py
 
-**Summary:** This example illustrates how to construct a quantum circuit compatible with the framework.
-
 ```python
 # ---
 # title: Qiskit Toolkit QuantumCircuit Construction
-# sdk:
-#   QuantumRingsLib: [0.10.x]
-#   quantumrings-toolkit-qiskit: [1.3.1, 1.4.0]
-#   Qiskit: [1.4.0]
+# synergy: |
+#   - quantumrings.toolkit.qiskit 0.1.10 fails(!) with Qiskit 2.0
+#   - A future version (0.1.11?) may resolve Qiskit 2.0 compatibility
+# sdk ["tested(+)", "fails(!)", "untested(?)"]:
+#   QuantumRingsLib: [0.9.11(+), 0.10.11(+)]
+#   quantumrings-toolkit-qiskit: [0.1.10(+)]
+#   Qiskit: [1.3.1(+), 1.4.1(+), 2.0(?)]
 #   GPU-enabled: [false]
-# python: [3.11]
-# os: [Windows 11, Ubuntu 22.04]
+# python: [3.11(+)]
+# os: [Windows 11(+), Ubuntu 22.04(?)]
 # tags: ['Qiskit', 'QuantumCircuit', 'circuit construction', 'QrBackendV2', 'QrEstimatorV1']
 # description: >
 #   Shows how to construct a Qiskit QuantumCircuit compatible with Quantum Rings execution backends. 
@@ -1409,18 +1436,19 @@ plt.show()
 
 ## quantumrings-toolkit-qiskit-sampler.py
 
-**Summary:** This example demonstrates a specific function. Refer to the script for more details.
-
 ```python
 # ---
 # title: Qiskit Toolkit Sampler V1 Example
-# sdk:
-#   QuantumRingsLib: [0.10.x]
-#   quantumrings-toolkit-qiskit: [1.3.1, 1.4.0]
-#   Qiskit: [1.4.0]
+# synergy: |
+#   - quantumrings.toolkit.qiskit 0.1.10 fails(!) with Qiskit 2.0
+#   - A future version (0.1.11?) may resolve Qiskit 2.0 compatibility
+# sdk ["tested(+)", "fails(!)", "untested(?)"]:
+#   QuantumRingsLib: [0.9.11(+), 0.10.11(+)]
+#   quantumrings-toolkit-qiskit: [0.1.10(+)]
+#   Qiskit: [1.3.1(+), 1.4.1(+), 2.0(?)]
 #   GPU-enabled: [false]
-# python: [3.11]
-# os: [Windows 11, Ubuntu 22.04]
+# python: [3.11(+)]
+# os: [Windows 11(+), Ubuntu 22.04(?)]
 # tags: ['Qiskit', 'QrSamplerV1', 'sampling', 'measurement', 'shots', 'circuit execution']
 # description: >
 #   Demonstrates use of QrSamplerV1 to run a parameterized Qiskit QuantumCircuit on a Quantum Rings backend.
@@ -1460,8 +1488,8 @@ from qiskit.circuit.equivalence_library import SessionEquivalenceLibrary
 # 🔹 Initialize Quantum Rings Backend
 # ===============================
 provider = QuantumRingsProvider()
-shots = 1000
 backend = QrBackendV2(provider=provider, num_qubits=2)
+shots = 1000
 
 # ===============================
 # 🔹 Construct Circuits
@@ -1576,145 +1604,10 @@ print("✅ QrSamplerV2 Counts:", result_v2[0].data.meas.get_counts())
 ```
 
 
-## quantumrings-toolkit-qiskit-samplerQNN-10.py
-
-**Summary:** This example demonstrates a specific function. Refer to the script for more details.
-
-```python
-# ---
-# title: Qiskit Toolkit Sampler QNN 10
-# sdk:
-#   QuantumRingsLib: [0.10.x]
-#   quantumrings-toolkit-qiskit: [1.3.1, 1.4.0]
-#   Qiskit: [1.4.0]
-#   GPU-enabled: [false]
-# python: [3.11]
-# os: [Windows 11, Ubuntu 22.04]
-# tags: ['Qiskit', 'SamplerQNN', 'machine learning', 'neural network', 'QrSamplerQNN']
-# description: >
-#   Demonstrates how to create and evaluate a SamplerQNN using the Quantum Rings QrSamplerQNN interface 
-#   for Qiskit machine learning integration. Builds a Qiskit TwoLocal circuit as the model, sets up 
-#   input-to-output mappings using input_gradients=False, and executes sampling across different input encodings.
-#   Suitable for hybrid classical-quantum ML workflows.
-# ---
-
-
-'''
-QrSamplerQNN module
-classQrSamplerQNN(*, circuit, sampler, input_params, weight_params, sparse, interpret, 
-output_shape, gradient, input_gradients, pass_manager)
-A neural network implementation based on the Sampler primitive.
-
-This class is a derivative of the Qiskit Machine Learning Package class SamplerQNN. 
-Please refer to the class for more documentation.
-
-The QrSamplerQNN is a neural network that takes in a parametrized quantum circuit with 
-designated parameters for input data and/or weights and translates the quasi-probabilities 
-estimated by the Sampler primitive into predicted classes. Quite often, a combined quantum 
-circuit is used. Such a circuit is built from two circuits: a feature map, it provides 
-input parameters for the network, and an ansatz (weight parameters). In this case a 
-QNNCircuit can be passed as circuit to simplify the composition of a feature map and ansatz. 
-If a QNNCircuit is passed as circuit, the input and weight parameters do not have to be provided, 
-because these two properties are taken from the QNNCircuit.
-
-The output can be set up in different formats, and an optional post-processing step 
-can be used to interpret the sampler’s output in a particular context (e.g. mapping the 
-resulting bitstring to match the number of classes).
-
-In this example the network maps the output of the quantum circuit to two classes via a custom 
-interpret function:
-
-'''
-
-from qiskit import QuantumCircuit
-from qiskit.circuit.library import ZZFeatureMap, RealAmplitudes
-from qiskit_machine_learning.circuit.library import QNNCircuit
-
-from quantumrings.toolkit.qiskit.machine_learning import QrSamplerQNN as SamplerQNN
-
-num_qubits = 2
-
-def parity(x):
-    return f"{bin(x)}".count("1") % 2
-
-# Using the QNNCircuit:
-# Create a parameterized 2 qubit circuit composed of the default ZZFeatureMap feature map
-# and RealAmplitudes ansatz.
-qnn_qc = QNNCircuit(num_qubits)
-
-qnn = SamplerQNN(
-    circuit=qnn_qc,
-    interpret=parity,
-    output_shape=2
-)
-
-qnn.forward(input_data=[1, 2], weights=[1, 2, 3, 4, 5, 6, 7, 8])
-
-# Explicitly specifying the ansatz and feature map:
-feature_map = ZZFeatureMap(feature_dimension=num_qubits)
-ansatz = RealAmplitudes(num_qubits=num_qubits)
-
-qc = QuantumCircuit(num_qubits)
-qc.compose(feature_map, inplace=True)
-qc.compose(ansatz, inplace=True)
-
-qnn = SamplerQNN(
-    circuit=qc,
-    input_params=feature_map.parameters,
-    weight_params=ansatz.parameters,
-    interpret=parity,
-    output_shape=2
-)
-
-qnn.forward(input_data=[1, 2], weights=[1, 2, 3, 4, 5, 6, 7, 8])
-
-'''
-The following attributes can be set via the constructor but can also be read and 
-updated once the SamplerQNN object has been constructed.
-
-Attributes:
-
-sampler (BaseSampler): The sampler primitive used to compute the neural network’s 
-results. gradient (BaseSamplerGradient): A sampler gradient to be used for the backward pass.
-
-__init__(self, *, circuit, sampler, input_params, weight_params, sparse, interpret, 
-output_shape, gradient, input_gradients, pass_manager)
-Args:
-circuit: The parametrized quantum circuit that generates the samples of this network. If a
-QNNCircuit is passed,
-the input_params and weight_params do not have to be provided, because these two
-properties are taken from the QNNCircuit.
-sampler: Not used.
-input_params: The parameters of the circuit corresponding to the input. If a
-QNNCircuit is provided the input_params value here is ignored. Instead, the value is taken from the
-QNNCircuit input_parameters.
-weight_params: The parameters of the circuit corresponding to the trainable weights. If a
-QNNCircuit is provided the weight_params value here is ignored. Instead, the value is taken from the
-QNNCircuit weight_parameters.
-sparse: Returns whether the output is sparse or not.
-interpret: A callable that maps the measured integer to another unsigned integer or tuple
-of unsigned integers. These are used as new indices for the (potentially sparse)
-output array. If no interpret function is passed, then an identity function will be
-used by this neural network.
-output_shape: The output shape of the custom interpretation. For SamplerV1, it is ignored
-if no custom interpret method is provided where the shape is taken to be
-2^circuit.num_qubits.
-gradient: An optional sampler gradient to be used for the backward pass. If None is
-given, a default instance of ParamShiftSamplerGradient will be used.
-input_gradients: Determines whether to compute gradients with respect to input data. Note
-that this parameter is False by default, and must be explicitly set to True
-for a proper gradient computation when using TorchConnector.
-pass_manager: The pass manager to transpile the circuits, if necessary.
-Defaults to None, as some primitives do not need transpiled circuits.
-
-'''
-```
-
-
 ## **Common Issues & Fixes**
 
 | **Error Message** | **Cause** | **Solution** |
-|------------------|---------|------------|
+|------------------|-----------|--------------|
 | `Invalid Argument Passed for Quantum Circuit` | Received a wrong type of circuit. | **Use the correct circuit type.** |
 | `job_monitor() TypeError` | `job_monitor()` does not work with the provided job type. | **Use manual polling (`while not job.in_final_state(): ...`)** |
 | `Transpile Required` | Circuits **must be transpiled** before running. | **Use `transpile(qc, backend, initial_layout=...)` before execution.** |

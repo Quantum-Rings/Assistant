@@ -1,11 +1,12 @@
 # ---
 # title: Quantumringslib Provider Setup
-# sdk:
-#   QuantumRingsLib: [0.9.x, 0.10.x]
+# sdk ["tested(+)", "fails(!)", "untested(?)"]:
+#   QuantumRingsLib: [0.9.11(+), 0.10.11(+)]
 #   quantumrings-toolkit-qiskit: []
+#   Qiskit: []
 #   GPU-enabled: [false]
-# python: [3.11]
-# os: [Windows 11, Ubuntu 22.04]
+# python: [3.11(+)]
+# os: [Windows 11(+), Ubuntu 22.04(?)]
 # tags: ['provider', 'authentication', 'QuantumRingsProvider', 'setup']
 # description: >
 #   Demonstrates how to initialize and activate a QuantumRingsProvider using saved credentials 
